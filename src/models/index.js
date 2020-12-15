@@ -2,6 +2,8 @@ import Sequelize from 'sequelize';
 import post from '../models/post.js';
 import databaseConfig from '../bd.config.js';
 
+/** Create new Sequelize with database config. */
+
 const sequelize = new Sequelize(databaseConfig.DATABASE, databaseConfig.USER, databaseConfig.PASSWORD, {
     host: databaseConfig.HOST,
     dialect: databaseConfig.DIALECT,

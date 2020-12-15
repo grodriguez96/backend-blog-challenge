@@ -5,16 +5,14 @@ const PORT = 4000;
 
 /** initializations */
 const app = express();
+db.sequelize.sync({ force: true }).then(() => { //This is only for development, IMPORTANT !
+    console.log("Drop and re-sync db.");
+});
 
 /** Settings */
 app.set("port", process.env.PORT || PORT);
 
 /** Routes */
-
-/** */
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-});
 
 /** Starting server */
 app.listen(app.get("port"), () => {

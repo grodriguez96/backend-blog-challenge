@@ -1,9 +1,12 @@
+/** Column(s) that can't be generated automatically.  */
 const options = {
     updatedAt: false,
 };
 
-
 export default (sequelize, Sequelize) => {
+
+    /** This Sequelize Model represents posts table in MySQL database. 
+     * These columns will be generated automatically: id, title, content, image, categoryId and createdAt. */
 
     const post = sequelize.define('post', {
 
@@ -24,7 +27,7 @@ export default (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        categId: {
+        categoryId: {
             type: Sequelize.INTEGER,
             foreignKey: true,
             allowNull: false,
