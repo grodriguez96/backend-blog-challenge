@@ -3,7 +3,7 @@ const databaseConfig = {
     USER: 'root',
     PASSWORD: '',
     DATABASE: 'blog',
-    dialect: 'mysql',
+    DIALECT: 'mysql',
 
     /** pool is optional, it will be used for Sequelize connection pool configuration. */
 

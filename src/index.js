@@ -1,4 +1,5 @@
 import express from "express";
+import db from './models/index'
 
 const PORT = 4000;
 
@@ -9,6 +10,11 @@ const app = express();
 app.set("port", process.env.PORT || PORT);
 
 /** Routes */
+
+/** */
+db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+});
 
 /** Starting server */
 app.listen(app.get("port"), () => {
