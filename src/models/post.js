@@ -1,5 +1,9 @@
+const options = {
+    updatedAt: false,
+};
 
-export default (Sequelize, sequelize) => {
+
+export default (sequelize, Sequelize) => {
 
     const post = sequelize.define('post', {
 
@@ -25,6 +29,8 @@ export default (Sequelize, sequelize) => {
             foreignKey: true,
             allowNull: false,
         }
-    });
+    },
+        options
+    );
     return post;
 }

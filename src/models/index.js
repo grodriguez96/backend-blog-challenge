@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
-import databaseConfig from '../bd.config';
+import post from '../models/post.js';
+import databaseConfig from '../bd.config.js';
 
 const sequelize = new Sequelize(databaseConfig.DATABASE, databaseConfig.USER, databaseConfig.PASSWORD, {
     host: databaseConfig.HOST,
@@ -13,6 +14,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.posts = import('../models/posts')(sequelize, Sequelize);
+db.posts = post(sequelize, Sequelize)
 
 export default db;
