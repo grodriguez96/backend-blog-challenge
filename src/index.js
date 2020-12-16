@@ -1,6 +1,6 @@
 import express from "express";
 import db from './models/index.js'
-import postRoute from '../src/routes/routes.js';
+import postsRoute from '../src/routes/routes.js';
 
 
 const PORT = 4000;
@@ -13,7 +13,7 @@ db.sequelize.sync({ force: true }) //force is only for development, IMPORTANT !
 app.set("port", process.env.PORT || PORT);
 
 /** Routes */
-app.use('/transaction', postRoute);
+app.use('/posts', postsRoute);
 
 /** Starting server */
 app.listen(app.get("port"), () => {

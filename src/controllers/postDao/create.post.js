@@ -4,7 +4,7 @@ const Post = db.posts;
 
 export default (req, res) => {
 
-    /** Validate requests */
+    /** Validate requests. */
 
     if (!req.body.title) {
         res.status(400).send({
@@ -30,7 +30,7 @@ export default (req, res) => {
         return;
     }
 
-    // Create a Tutorial
+    /** Create a post. */
     const post = {
         title: req.body.title,
         content: req.body.content,
@@ -38,7 +38,7 @@ export default (req, res) => {
         categoryId: req.body.categoryId
     };
 
-    // Save Tutorial in the database
+    /** Save post in the database. */
     Post.create(post)
         .then(data => {
             res.send(data);
@@ -46,7 +46,7 @@ export default (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Post."
+                    err.message || "Some error occurred while creating the post."
             });
         });
 }
