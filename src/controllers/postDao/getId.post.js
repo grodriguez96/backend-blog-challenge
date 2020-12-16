@@ -9,10 +9,9 @@ export default (req, res) => {
 
     Post.findByPk(id)
         .then(data => {
-            data ? res.send(data)
-                : res.status(400).send({
-                    message: " The id = " + id + " doesn't exist."
-                });;
+            data
+                ? res.send(data)
+                : res.status(400).send({ message: " The id = " + id + " doesn't exist." });
         })
         .catch(err => {
             res.status(500).send({

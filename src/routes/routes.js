@@ -15,4 +15,7 @@ router.get("/:id", postDao.getById);
 /** Update post by id */
 router.patch("/:id", postDao.update);
 
+/** Delete post by id */
+router.delete("/:id", postDao.delet);
+
 export default router;

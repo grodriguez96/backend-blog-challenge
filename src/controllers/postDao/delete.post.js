@@ -9,20 +9,20 @@ const Post = db.posts;
 
 export default (req, res) => {
 
-    /** Update post by id. */
+    /** Delete post by id. */
     const id = req.params.id;
 
-    Post.update(req.body, {
+    Post.destroy({
         where: { id: id }
     })
         .then(num => {
             num == status.SUCCESS
-                ? res.send({ message: "Post was update successfully." })
-                : res.send({ message: "Cannot update Post with id = " + id });
+                ? res.send({ message: "Post was delete successfully." })
+                : res.send({ message: "Cannot delete Post with id = " + id });
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Post with id=" + id
+                message: "Error deleting Post with id=" + id
             });
         });
 }
