@@ -1,7 +1,6 @@
-import db from '../models/index.js'
+import db from '../../models/index.js'
 
 const Post = db.posts;
-const Op = db.Sequelize.Op;
 
 export default (req, res) => {
 

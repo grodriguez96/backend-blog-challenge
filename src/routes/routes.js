@@ -1,10 +1,10 @@
 import express from 'express';
-import createPost from '../controllers/create.post.js'
+import * as postDao from '../controllers/post.controller.js'
 
 var router = express.Router();
 
 /** Create a new Tutorial */
-router.post("/", createPost);
+router.post("/", postDao.create);
 
 
 export default router;
