@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import post from '../models/post.js';
+import post from './post.model.js';
 import databaseConfig from '../bd.config.js';
 
 /** Create new Sequelize with database config. */
