@@ -8,7 +8,12 @@ export default (req, res) => {
 
     Post.findAll()
         .then(data => {
-            res.send(data);
+            const sortByDate = data.sort(function (a, b) {
+                /** Turn your strings into dates, and then subtract them
+                /* to get a value that is either negative, positive, or zero. */
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });;
+            res.send(sortByDate);
         })
         .catch(err => {
             res.status(500).send({
