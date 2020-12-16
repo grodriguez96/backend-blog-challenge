@@ -1,7 +1,7 @@
-import express from 'express';
-import * as postDao from '../controllers/post.controller.js'
+import express from "express";
+import * as postDao from "../controllers/post.controller.js";
 
-let router = express.Router();
+const router = express.Router();
 
 /** Create a new post. */
 router.post("/", postDao.create);
