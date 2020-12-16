@@ -39,6 +39,6 @@ _Then open: http://localhost:4000_
 - [Eslint](https://eslint.org/docs/user-guide/getting-started)
 - [Sequelize](https://sequelize.org/master/)
 
-## Autores ✒️
+## Author ✒️
 
 - **Gabriel Rodriguez** - [grodriguez96](https://github.com/grodriguez96)

@@ -1,4 +1,5 @@
 import db from "../../models/index.js";
+import expressV from "express-validator";
 
 const status = {
   SUCCESS: 1,
@@ -8,6 +9,12 @@ const status = {
 const Post = db.posts;
 
 export default async function deletePost(req, res) {
+  /** Finds the validation errors in this request and wraps them in an object with handy functions. */
+  const errors = expressV.validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   /** Delete post by id. */
   const id = req.params.id;
 
