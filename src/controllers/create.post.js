@@ -3,7 +3,7 @@ import db from '../models/index.js'
 const Post = db.posts;
 const Op = db.Sequelize.Op;
 
-export default createPost = (req, res) => {
+export default (req, res) => {
 
     /** Validate requests */
 
