@@ -9,4 +9,7 @@ router.post("/", postDao.create);
 /** Get all post. */
 router.get("/", postDao.getAll);
 
+/** Get post by id. */
+router.get("/:id", postDao.getById);
+
 export default router;

@@ -4,16 +4,16 @@ const Post = db.posts;
 
 export default (req, res) => {
 
-    /** Get all posts for the database. */
+    /** Get post by id. */
+    const id = req.params.id;
 
-    Post.findAll()
+    Post.findByPk(id)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving posts."
+                message: "Error retrieving Tutorial with id=" + id
             });
         });
 }
