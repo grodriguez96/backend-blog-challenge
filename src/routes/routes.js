@@ -12,4 +12,7 @@ router.get("/", postDao.getAll);
 /** Get post by id. */
 router.get("/:id", postDao.getById);
 
+/** Update post by id */
+router.patch("/:id", postDao.update);
+
 export default router;
