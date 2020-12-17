@@ -16,8 +16,6 @@ export default async function getAllPost(req, res) {
     const serverError = boom.internal(
       err.message || message.INTERNAL_SERVER_ERROR
     );
-    res
-      .status(serverError.output.statusCode)
-      .json(validationError.output.payload);
+    res.status(serverError.output.statusCode).send(serverError.output.payload);
   }
 }
