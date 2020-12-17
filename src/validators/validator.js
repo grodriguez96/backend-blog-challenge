@@ -1,18 +1,19 @@
 import { check, param } from "express-validator";
 import validationImageExtension from "../utils/validations/validation.imgExtension.js";
+import message from "../utils/enums/enum.message.js";
 
 export const paramId = param("id").isInt().withMessage("Id must be a number");
 
 export const body = [
-  check("title").not().isEmpty().withMessage("Title cannot be empty"),
-  check("content").not().isEmpty().withMessage("Content cannot be empty"),
+  check("title").not().isEmpty().withMessage(message.TITLE_EMPTY),
+  check("content").not().isEmpty().withMessage(message.CONTENT_EMPTY),
   check("image")
     .not()
     .isEmpty()
-    .withMessage("Image cannot be empty")
+    .withMessage(message.IMAGE_EMPTY)
     .isURL()
-    .withMessage("Image must be a valid url")
-    .custom((value) => validationImageExtension(value))
-    .withMessage("Image must be a valid extension"),
-  check("categoryId").not().isEmpty().withMessage("Category cannot be empty"),
+    .withMessage(message.IMAGE_INVALID_URL)
+    .custom((url) => validationImageExtension(url))
+    .withMessage(message.IMAGE_INVALID_EXTENSION),
+  check("categoryId").not().isEmpty().withMessage(message.CATEGORY_EMPTY),
 ];
