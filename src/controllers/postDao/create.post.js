@@ -1,8 +1,15 @@
 import db from "../../models/index.js";
+import { validationResult } from "express-validator";
 
 const Post = db.posts;
 
 export default async function createPost(req, res) {
+  /** Finds the validation errors in this request and wraps them in an object with handy functions. */
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   /** Create a new post. */
   const post = {
     title: req.body.title,
