@@ -1,27 +1,32 @@
 import db from "../../models/index.js";
 import { validationResult } from "express-validator";
 import status from "../../utils/enum.status.js";
+import boom from "@hapi/boom";
+import message from "../../utils/enum.message.js";
 
 const POST = db.posts;
 
 export default async function updatePost(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array(),
-    });
+    const validationError = boom.badRequest(errors.array()[0]["msg"]);
+    return res
+      .status(validationError.output.statusCode)
+      .json(validationError.output.payload);
   }
 
-  const id = req.params.id;
-
   try {
+    const id = req.params.id;
     const num = await POST.update(req.body, { where: { id: id } });
     num == status.SUCCESS
-      ? res.send({ message: "Post was update successfully." })
-      : res.send({ message: "Cannot update Post with id = " + id });
+      ? res.send({ message: message.UPDATE })
+      : res.send({ message: message.ID_NOT_FOUND });
   } catch (err) {
-    res.status(500).send({
-      message: "Error updating Post with id=" + id,
-    });
+    const serverError = boom.internal(
+      err.message || message.INTERNAL_SERVER_ERROR
+    );
+    res
+      .status(serverError.output.statusCode)
+      .json(validationError.output.payload);
   }
 }

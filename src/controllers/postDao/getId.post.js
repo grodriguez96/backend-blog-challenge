@@ -14,9 +14,8 @@ export default async function getPostById(req, res) {
       .json(validationError.output.payload);
   }
 
-  const id = req.params.id;
-
   try {
+    const id = req.params.id;
     const data = await POST.findByPk(id);
     data ? res.send(data) : res.send({ message: message.ID_NOT_FOUND });
   } catch (err) {

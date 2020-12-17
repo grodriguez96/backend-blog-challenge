@@ -3,6 +3,7 @@ const message = {
   USER_CREATE: "User created successfully",
   ID_NOT_FOUND: "The id cannot be found",
   DELETE: "Post was delete succesfully",
+  UPDATE: "Post was update succesfully",
 };
 
 export default message;
