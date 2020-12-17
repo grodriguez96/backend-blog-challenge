@@ -1,15 +1,15 @@
 import db from "../../models/index.js";
 import newPost from "../../utils/new.post.js";
 import { validationResult } from "express-validator";
-import reqValidationResult from "../../utils/req.ValidationResult.js";
-import boom from "@hapi/boom";
+import reqValidationError from "../../utils/req.validationError.js";
 import message from "../../utils/enum.message.js";
+import bdInternalError from "../../utils/bd.internalError.js";
 
 const POST = db.posts;
 
 export default async function createPost(req, res) {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) reqValidationResult(res, errors);
+  if (!errors.isEmpty()) reqValidationError(res, errors);
   else {
     const post = newPost(req.body);
 
@@ -17,12 +17,7 @@ export default async function createPost(req, res) {
       const data = await POST.create(post);
       res.send({ message: message.CREATED, data });
     } catch (err) {
-      const serverError = boom.internal(
-        err.message || message.INTERNAL_SERVER_ERROR
-      );
-      res
-        .status(serverError.output.statusCode)
-        .send(serverError.output.payload);
+      bdInternalError(res, err);
     }
   }
 }

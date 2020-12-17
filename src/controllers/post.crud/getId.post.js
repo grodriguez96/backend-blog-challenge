@@ -1,26 +1,22 @@
 import db from "../../models/index.js";
 import { validationResult } from "express-validator";
-import reqValidationResult from "../../utils/req.ValidationResult.js";
-import boom from "@hapi/boom";
+import reqValidationError from "../../utils/req.validationError.js";
+import bdInternalError from "../../utils/bd.internalError.js";
+
 import message from "../../utils/enum.message.js";
 
 const POST = db.posts;
 
 export default async function getPostById(req, res) {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) reqValidationResult(res, errors);
+  if (!errors.isEmpty()) reqValidationError(res, errors);
   else {
     try {
       const id = req.params.id;
       const data = await POST.findByPk(id);
       data ? res.send(data) : res.send({ message: message.ID_NOT_FOUND });
     } catch (err) {
-      const serverError = boom.internal(
-        err.message || message.INTERNAL_SERVER_ERROR
-      );
-      res
-        .status(serverError.output.statusCode)
-        .send(serverError.output.payload);
+      bdInternalError(res, err);
     }
   }
 }
