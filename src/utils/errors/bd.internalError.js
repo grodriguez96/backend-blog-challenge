@@ -1,5 +1,5 @@
 import boom from "@hapi/boom";
-import message from "./enum.message.js";
+import message from "../enums/enum.message.js";
 
 export default function bdInternalError(res, err) {
   const serverError = boom.internal(

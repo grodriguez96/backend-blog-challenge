@@ -1,10 +1,9 @@
 import db from "../../models/index.js";
 import { validationResult } from "express-validator";
-import reqValidationError from "../../utils/req.validationError.js";
-import status from "../../utils/enum.status.js";
-import bdInternalError from "../../utils/bd.internalError.js";
-
-import message from "../../utils/enum.message.js";
+import reqValidationError from "../../utils/errors/req.validationError.js";
+import status from "../../utils/enums/enum.status.js";
+import bdInternalError from "../../utils/errors/bd.internalError.js";
+import message from "../../utils/enums/enum.message.js";
 
 const POST = db.posts;
 
