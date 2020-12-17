@@ -1,22 +1,23 @@
 import express from "express";
-import * as postDao from "../controllers/post.controller.js";
+import {
+  createPost,
+  getAllPost,
+  getIdPost,
+  deletePost,
+  updatePost,
+} from "../controllers/post.controller.js";
 import * as validator from "../validators/validator.js";
 
 const router = express.Router();
 
-/** Create a new post. */
-router.post("/", [validator.body], postDao.create);
+router.post("/", [validator.body], createPost);
 
-/** Get all post. */
-router.get("/", postDao.getAll);
+router.get("/", getAllPost);
 
-/** Get post by id. */
-router.get("/:id", [validator.paramId], postDao.getById);
+router.get("/:id", [validator.paramId], getIdPost);
 
-/** Update post by id */
-router.patch("/:id", [validator.paramId, validator.body], postDao.update);
+router.patch("/:id", [validator.paramId, validator.body], updatePost);
 
-/** Delete post by id */
-router.delete("/:id", [validator.paramId], postDao.delet);
+router.delete("/:id", [validator.paramId], deletePost);
 
 export default router;

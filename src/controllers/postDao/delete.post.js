@@ -1,25 +1,21 @@
 import db from "../../models/index.js";
 import { validationResult } from "express-validator";
+import status from "../../utils/enum.status.js";
 
-const status = {
-  SUCCESS: 1,
-  FAILURE: 0,
-};
-
-const Post = db.posts;
+const POST = db.posts;
 
 export default async function deletePost(req, res) {
-  /** Finds the validation errors in this request and wraps them in an object with handy functions. */
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({
+      errors: errors.array(),
+    });
   }
 
-  /** Delete post by id. */
   const id = req.params.id;
 
   try {
-    const num = await Post.destroy({ where: { id: id } });
+    const num = await POST.destroy({ where: { id: id } });
     num == status.SUCCESS
       ? res.send({ message: "Post was delete successfully." })
       : res.send({ message: "Cannot delete Post with id = " + id });

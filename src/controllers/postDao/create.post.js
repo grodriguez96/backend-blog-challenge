@@ -1,26 +1,21 @@
 import db from "../../models/index.js";
+import newPost from "../../utils/new.post.js";
 import { validationResult } from "express-validator";
 
-const Post = db.posts;
+const POST = db.posts;
 
 export default async function createPost(req, res) {
-  /** Finds the validation errors in this request and wraps them in an object with handy functions. */
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({
+      errors: errors.array(),
+    });
   }
 
-  /** Create a new post. */
-  const post = {
-    title: req.body.title,
-    content: req.body.content,
-    image: req.body.image,
-    categoryId: req.body.categoryId,
-  };
+  const post = newPost(req.body);
 
-  /** Save post in the database. */
   try {
-    const data = await Post.create(post);
+    const data = await POST.create(post);
     res.send(data);
   } catch (err) {
     res.status(500).send({
