@@ -1,11 +1,11 @@
 import db from "../../models/index.js";
-import expressV from "express-validator";
+import { validationResult } from "express-validator";
 
 const Post = db.posts;
 
 export default async function getPostById(req, res) {
   /** Finds the validation errors in this request and wraps them in an object with handy functions. */
-  const errors = expressV.validationResult(req);
+  const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }

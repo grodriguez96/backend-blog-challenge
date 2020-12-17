@@ -1,24 +1,22 @@
 import express from "express";
-import expressV from "express-validator";
 import * as postDao from "../controllers/post.controller.js";
+import * as validator from "../validators/validator.js";
 
 const router = express.Router();
 
-const isInt = expressV.param("id").isInt();
-
 /** Create a new post. */
-router.post("/", postDao.create);
+router.post("/", [validator.body], postDao.create);
 
 /** Get all post. */
 router.get("/", postDao.getAll);
 
 /** Get post by id. */
-router.get("/:id", [isInt], postDao.getById);
+router.get("/:id", [validator.paramId], postDao.getById);
 
 /** Update post by id */
-router.patch("/:id", [isInt], postDao.update);
+router.patch("/:id", [validator.paramId, validator.body], postDao.update);
 
 /** Delete post by id */
-router.delete("/:id", [isInt], postDao.delet);
+router.delete("/:id", [validator.paramId], postDao.delet);
 
 export default router;
