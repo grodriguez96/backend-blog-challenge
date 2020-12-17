@@ -12,7 +12,7 @@ $ git clone https://github.com/grodriguez96/backend-blog-challenge.git
 
 ## Requirements 📋
 
-_Make sure you have mysql installed, and changes the values in the bd.config.js file, also you'll need node installed_
+_Make sure you have mysql installed, and changes the values in config/bd.config.js file, also you'll need node installed_
 
 ## Installation 🔧
 
