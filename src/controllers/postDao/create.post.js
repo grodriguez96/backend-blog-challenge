@@ -19,7 +19,7 @@ export default async function createPost(req, res) {
 
   try {
     const data = await POST.create(post);
-    res.send({ message: message.USER_CREATE, data });
+    res.send({ message: message.CREATED, data });
   } catch (err) {
     const serverError = boom.internal(
       err.message || message.INTERNAL_SERVER_ERROR

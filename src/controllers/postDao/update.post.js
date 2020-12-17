@@ -19,7 +19,7 @@ export default async function updatePost(req, res) {
     const id = req.params.id;
     const num = await POST.update(req.body, { where: { id: id } });
     num == status.SUCCESS
-      ? res.send({ message: message.UPDATE })
+      ? res.send({ message: message.UPDATED })
       : res.send({ message: message.ID_NOT_FOUND });
   } catch (err) {
     const serverError = boom.internal(

@@ -19,7 +19,7 @@ export default async function deletePost(req, res) {
     const id = req.params.id;
     const num = await POST.destroy({ where: { id: id } });
     num == status.SUCCESS
-      ? res.send({ message: message.DELETE })
+      ? res.send({ message: message.DELETED })
       : res.send({ message: message.ID_NOT_FOUND });
   } catch (err) {
     const serverError = boom.internal(
