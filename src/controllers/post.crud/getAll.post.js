@@ -1,4 +1,4 @@
-import { db } from "../../models/index.js";
+import db from "../../models/index.js";
 import modifyPost from "../../utils/posts/modify.post.js";
 import sortPost from "../../utils/posts/sort.post.js";
 import bdInternalError from "../../utils/errors/bd.internalError.js";

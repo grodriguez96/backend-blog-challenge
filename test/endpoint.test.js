@@ -1,8 +1,21 @@
 import request from "supertest";
-import { app } from "../src/index.js";
+import app from "../src/index.js";
+import db from "../src/models/index.js";
+import {
+  intParam,
+  charParam,
+  postComplete,
+  postTitleEmpty,
+  postContentEmpty,
+  postInvalidUrlImage,
+  postInvalidExtImage,
+  postCategoryEmpty,
+  postImageEmpty,
+} from "./data.js";
 
-const intParam = 1;
-const charParam = "p";
+beforeAll(async () => {
+  await db.sequelize.sync({ force: true });
+});
 
 describe("Response the GET method", () => {
   it("It should send status 200", async () => {
@@ -33,12 +46,7 @@ describe("Response the POST method", () => {
   it("It should send status 200", async () => {
     const response = await request(app)
       .post("/posts")
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "www.imagen.jpg",
-        categoryId: 1,
-      })
+      .send(postComplete)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       message: "Post created successfully",
@@ -49,12 +57,7 @@ describe("Response the POST method", () => {
   it("It should send status 400 - Title empty", async () => {
     const response = await request(app)
       .post("/posts")
-      .send({
-        title: "",
-        content: "This is my first post",
-        image: "www.imagen.jpg",
-        categoryId: 1,
-      })
+      .send(postTitleEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -66,12 +69,7 @@ describe("Response the POST method", () => {
   it("It should send status 400 - Content empty", async () => {
     const response = await request(app)
       .post("/posts")
-      .send({
-        title: "My first post",
-        content: "",
-        image: "www.imagen.jpg",
-        categoryId: 1,
-      })
+      .send(postContentEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -83,12 +81,7 @@ describe("Response the POST method", () => {
   it("It should send status 400 - Image empty", async () => {
     const response = await request(app)
       .post("/posts")
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "",
-        categoryId: 1,
-      })
+      .send(postImageEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -100,12 +93,7 @@ describe("Response the POST method", () => {
   it("It should send status 400 - Image invalid url", async () => {
     const response = await request(app)
       .post("/posts")
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "img",
-        categoryId: 1,
-      })
+      .send(postInvalidUrlImage)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -117,12 +105,7 @@ describe("Response the POST method", () => {
   it("It should send status 400 - Image invalid extension", async () => {
     const response = await request(app)
       .post("/posts")
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "img.com",
-        categoryId: 1,
-      })
+      .send(postInvalidExtImage)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -134,12 +117,7 @@ describe("Response the POST method", () => {
   it("It should send status 400 - Category empty", async () => {
     const response = await request(app)
       .post("/posts")
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "www.imagen.jpg",
-        categoryId: "",
-      })
+      .send(postCategoryEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -154,12 +132,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 200", async () => {
     const response = await request(app)
       .patch("/posts/" + intParam)
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "www.imagen.jpg",
-        categoryId: 1,
-      })
+      .send(postComplete)
       .set("Accept", "application/json");
     expect(response.body).toEqual({ message: "Post updated succesfully" });
     expect(response.statusCode).toBe(200);
@@ -167,12 +140,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 400 - Invalid param", async () => {
     const response = await request(app)
       .patch("/posts/" + charParam)
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "www.imagen.jpg",
-        categoryId: 1,
-      })
+      .send(postComplete)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -184,12 +152,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 400 - Title empty", async () => {
     const response = await request(app)
       .patch("/posts/" + intParam)
-      .send({
-        title: "",
-        content: "This is my first post",
-        image: "www.imagen.jpg",
-        categoryId: 1,
-      })
+      .send(postTitleEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -201,12 +164,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 400 - Content empty", async () => {
     const response = await request(app)
       .patch("/posts/" + intParam)
-      .send({
-        title: "My first post",
-        content: "",
-        image: "www.imagen.jpg",
-        categoryId: 1,
-      })
+      .send(postContentEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -218,12 +176,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 400 - Image empty", async () => {
     const response = await request(app)
       .patch("/posts/" + intParam)
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "",
-        categoryId: 1,
-      })
+      .send(postImageEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -235,12 +188,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 400 - Image invalid url", async () => {
     const response = await request(app)
       .patch("/posts/" + intParam)
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "img",
-        categoryId: 1,
-      })
+      .send(postInvalidUrlImage)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -252,12 +200,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 400 - Image invalid extension", async () => {
     const response = await request(app)
       .patch("/posts/" + intParam)
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "img.com",
-        categoryId: 1,
-      })
+      .send(postInvalidExtImage)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",
@@ -269,12 +212,7 @@ describe("Response the PATCH/:id method", () => {
   it("It should send status 400 - Category empty", async () => {
     const response = await request(app)
       .patch("/posts/" + intParam)
-      .send({
-        title: "My first post",
-        content: "This is my first post",
-        image: "www.imagen.jpg",
-        categoryId: "",
-      })
+      .send(postCategoryEmpty)
       .set("Accept", "application/json");
     expect(response.body).toEqual({
       error: "Bad Request",

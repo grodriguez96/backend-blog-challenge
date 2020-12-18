@@ -1,4 +1,4 @@
-import { db } from "../../models/index.js";
+import db from "../../models/index.js";
 import { validationResult } from "express-validator";
 import reqValidationError from "../../utils/errors/req.validationError.js";
 import bdInternalError from "../../utils/errors/bd.internalError.js";
