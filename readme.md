@@ -22,6 +22,14 @@ _In the project directory, to install packages, you can run:_
 $ npm install
 ```
 
+## Run Test ⚙️
+
+_In the main directory of the app, you can run:_
+
+```
+$ npm run test
+```
+
 ## Start Application 📦
 
 _In the main directory of the app, you can run:_
