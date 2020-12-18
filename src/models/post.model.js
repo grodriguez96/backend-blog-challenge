@@ -31,5 +31,6 @@ export default function postModel(sequelize, Sequelize) {
     },
     options
   );
+
   return post;
 }

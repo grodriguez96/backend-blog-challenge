@@ -13,11 +13,9 @@ const sequelize = new Sequelize(
   }
 );
 
-const db = {};
+export const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.posts = post(sequelize, Sequelize);
-
-export default db;

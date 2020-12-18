@@ -1,7 +1,5 @@
-import createPost from "./post.crud/create.post.js";
-import getAllPost from "./post.crud/getAll.post.js";
-import getIdPost from "./post.crud/getId.post.js";
-import updatePost from "./post.crud/update.post.js";
-import deletePost from "./post.crud/delete.post.js";
-
-export { createPost, getAllPost, getIdPost, updatePost, deletePost };
+export * from "./post.crud/create.post.js";
+export * from "./post.crud/getAll.post.js";
+export * from "./post.crud/getId.post.js";
+export * from "./post.crud/update.post.js";
+export * from "./post.crud/delete.post.js";

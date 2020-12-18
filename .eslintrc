@@ -1,0 +1,25 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "no-console": 0,
+        "comma-dangle": 0,
+        "consistent-return": 0,
+        "no-unused-vars": 0
+    },
+    "globals": {
+        "jest": true,
+        "describe": true,
+        "it": true,
+        "after": true,
+        "afterEach": true,
+        "before": true,
+        "beforeAll": true,
+        "beforeEach": true,
+        "should": true,
+        "expect": true
+    },
+    "env": {
+        "node": true,
+        "mocha": true
+    }
+}
