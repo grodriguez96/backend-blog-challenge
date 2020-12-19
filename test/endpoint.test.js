@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../src/index.js";
+import app from "./fakeApp.js";
 import db from "../src/models/index.js";
 import {
   intParam,
@@ -238,4 +238,8 @@ describe("Response the DELETE/:id method", () => {
     });
     expect(response.statusCode).toBe(400);
   });
+});
+
+afterAll(async () => {
+  await new Promise((resolve) => setTimeout(() => resolve(), 500)); // avoid jest open handle error
 });
