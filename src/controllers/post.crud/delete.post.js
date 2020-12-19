@@ -5,7 +5,7 @@ import message from "../../utils/enums/enum.message.js";
 
 const POST = db.posts;
 
-export async function deletePost(req, res) {
+export default async function deletePost(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) reqValidationError(errors);
 

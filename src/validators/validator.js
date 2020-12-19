@@ -15,5 +15,10 @@ export const body = [
     .withMessage(message.IMAGE_INVALID_URL)
     .custom((url) => validationImageExtension(url))
     .withMessage(message.IMAGE_INVALID_EXTENSION),
-  check("categoryId").not().isEmpty().withMessage(message.CATEGORY_EMPTY),
+  check("categoryId")
+    .not()
+    .isEmpty()
+    .withMessage(message.CATEGORY_EMPTY)
+    .isInt()
+    .withMessage(message.CATEGORY_INVALID),
 ];

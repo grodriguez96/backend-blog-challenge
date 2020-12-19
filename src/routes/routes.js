@@ -1,28 +1,27 @@
 import express from "express";
-import {
-  createPost,
-  getAllPost,
-  getPostById,
-  deletePost,
-  updatePost,
-} from "../controllers/post.controller.js";
+import postController from "../controllers/post.controller.js";
 import * as validator from "../validators/validator.js";
 import asyncMiddleware from "../middlewares/asyncMiddleware.js";
+import boom from "@hapi/boom";
 
 const router = express.Router();
+const err = boom.methodNotAllowed();
 
-router.post("/", [validator.body], asyncMiddleware(createPost));
+router
 
-router.get("/", asyncMiddleware(getAllPost));
-
-router.get("/:id", [validator.paramId], asyncMiddleware(getPostById));
-
-router.patch(
-  "/:id",
-  [validator.paramId, validator.body],
-  asyncMiddleware(updatePost)
-);
-
-router.delete("/:id", [validator.paramId], asyncMiddleware(deletePost));
-
+  .get("/", asyncMiddleware(postController))
+  .get("/:id", [validator.paramId], asyncMiddleware(postController))
+  .post("/", [validator.body], asyncMiddleware(postController))
+  .patch(
+    "/:id",
+    [validator.paramId, validator.body],
+    asyncMiddleware(postController)
+  )
+  .delete("/:id", [validator.paramId], asyncMiddleware(postController))
+  .all("/", (req, res, next) => {
+    res.status(err.output.statusCode).json(err.output.payload);
+  })
+  .all("/:id", (req, res, next) => {
+    res.status(err.output.statusCode).json(err.output.payload);
+  });
 export default router;

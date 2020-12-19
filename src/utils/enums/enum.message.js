@@ -10,6 +10,7 @@ const message = {
   IMAGE_INVALID_URL: "Image must be a valid url",
   IMAGE_INVALID_EXTENSION: "Image must be a valid extension",
   CATEGORY_EMPTY: "Category cannot be empty",
+  CATEGORY_INVALID: "Category invalid",
 };
 
 export default message;

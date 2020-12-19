@@ -1,5 +1,4 @@
-import imgExtension from "./array.imgExtension.js";
-
+const imgExtension = ["png", "gif", "bmp", "jpg", "jpeg", "tif", "tiff"];
 const SPLIT = ".";
 
 export default function validationImageExtension(url) {
