@@ -7,17 +7,22 @@ import {
   updatePost,
 } from "../controllers/post.controller.js";
 import * as validator from "../validators/validator.js";
+import asyncMiddleware from "../middlewares/asyncMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", [validator.body], createPost);
+router.post("/", [validator.body], asyncMiddleware(createPost));
 
-router.get("/", getAllPost);
+router.get("/", asyncMiddleware(getAllPost));
 
-router.get("/:id", [validator.paramId], getPostById);
+router.get("/:id", [validator.paramId], asyncMiddleware(getPostById));
 
-router.patch("/:id", [validator.paramId, validator.body], updatePost);
+router.patch(
+  "/:id",
+  [validator.paramId, validator.body],
+  asyncMiddleware(updatePost)
+);
 
-router.delete("/:id", [validator.paramId], deletePost);
+router.delete("/:id", [validator.paramId], asyncMiddleware(deletePost));
 
 export default router;

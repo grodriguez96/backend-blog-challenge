@@ -1,8 +1,6 @@
 import boom from "@hapi/boom";
 
-export default function reqValidationError(res, err) {
+export default function reqValidationError(err) {
   const validationError = boom.badRequest(err.array()[0]["msg"]);
-  return res
-    .status(validationError.output.statusCode)
-    .send(validationError.output.payload);
+  throw validationError;
 }
