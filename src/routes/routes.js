@@ -2,10 +2,8 @@ import express from "express";
 import postController from "../controllers/post.controller.js";
 import * as validator from "../validators/validator.js";
 import asyncMiddleware from "../middlewares/asyncMiddleware.js";
-import boom from "@hapi/boom";
 
 const router = express.Router();
-const err = boom.methodNotAllowed();
 
 router
 
