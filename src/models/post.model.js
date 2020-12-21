@@ -15,7 +15,7 @@ export default function postModel(sequelize, Sequelize) {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      content: {
+      body: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
@@ -24,6 +24,11 @@ export default function postModel(sequelize, Sequelize) {
         allowNull: false,
       },
       categoryId: {
+        type: Sequelize.INTEGER,
+        foreignKey: true,
+        allowNull: false,
+      },
+      userId: {
         type: Sequelize.INTEGER,
         foreignKey: true,
         allowNull: false,

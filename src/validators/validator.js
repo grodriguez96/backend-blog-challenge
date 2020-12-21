@@ -6,7 +6,7 @@ export const paramId = param("id").isInt().withMessage("Id must be a number");
 
 export const body = [
   check("title").not().isEmpty().withMessage(message.TITLE_EMPTY),
-  check("content").not().isEmpty().withMessage(message.CONTENT_EMPTY),
+  check("body").not().isEmpty().withMessage(message.BODY_EMPTY),
   check("image")
     .not()
     .isEmpty()
@@ -19,6 +19,12 @@ export const body = [
     .not()
     .isEmpty()
     .withMessage(message.CATEGORY_EMPTY)
+    .isInt()
+    .withMessage(message.CATEGORY_INVALID),
+  check("userId")
+    .not()
+    .isEmpty()
+    .withMessage(message.IMAGE_EMPTY)
     .isInt()
     .withMessage(message.CATEGORY_INVALID),
 ];

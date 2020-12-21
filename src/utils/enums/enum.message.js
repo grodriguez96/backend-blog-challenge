@@ -5,12 +5,14 @@ const message = {
   DELETED: "Post deleted succesfully",
   UPDATED: "Post updated succesfully",
   TITLE_EMPTY: "Title cannot be empty",
-  CONTENT_EMPTY: "Content cannot be empty",
+  BODY_EMPTY: "Body cannot be empty",
   IMAGE_EMPTY: "Image cannot be empty",
   IMAGE_INVALID_URL: "Image must be a valid url",
   IMAGE_INVALID_EXTENSION: "Image must be a valid extension",
   CATEGORY_EMPTY: "Category cannot be empty",
   CATEGORY_INVALID: "Category invalid",
+  USER_ID_EMPTY: "User id cannot be empty",
+  USER_ID_INVALID: "User id invalid",
 };
 
 export default message;

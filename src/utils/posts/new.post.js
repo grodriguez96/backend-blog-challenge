@@ -1,8 +1,9 @@
 export default function newPost(body) {
   return {
     title: body.title,
-    content: body.content,
+    body: body.body,
     image: body.image,
     categoryId: body.categoryId,
+    userId: body.userId,
   };
 }
