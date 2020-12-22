@@ -12,7 +12,7 @@ export async function getPostById(req, res) {
 
   const id = req.params.id;
   const post = await POST.findByPk(id);
-  if (post) res.status(200).send({ message: message.UPDATED });
+  if (post) res.status(200).send(post);
   else {
     const err = boom.notFound(message.ID_NOT_FOUND);
     throw err;
