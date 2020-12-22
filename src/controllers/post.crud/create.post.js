@@ -6,7 +6,7 @@ import message from "../../utils/enums/enum.message.js";
 
 const POST = db.posts;
 
-export default async function createPost(req, res) {
+export async function createPost(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) reqValidationError(errors);
 

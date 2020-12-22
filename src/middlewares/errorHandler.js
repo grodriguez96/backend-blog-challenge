@@ -1,3 +1,4 @@
 export default function errorHandler(err, req, res, next) {
-  return res.status(err.output.statusCode).json(err.output.payload);
+  console.log(err.output);
+  return res.status(err.output.statusCode).send(err.output.message);
 }

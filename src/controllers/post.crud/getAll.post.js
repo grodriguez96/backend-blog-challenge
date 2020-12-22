@@ -4,7 +4,7 @@ import sortPost from "../../utils/posts/sort.post.js";
 
 const POST = db.posts;
 
-export default async function getAllPost(req, res) {
+export async function getAllPost(req, res) {
   const data = await POST.findAll();
   //const newPosts = data.map(modifyPost);
   //const posts = newPosts.sort(sortPost);

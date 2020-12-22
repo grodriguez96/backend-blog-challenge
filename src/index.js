@@ -10,7 +10,7 @@ const DEFAULTPORT = 4000;
 const PORT = process.env.PORTSERVER || DEFAULTPORT;
 
 const app = express();
-db.sequelize.sync({ force: true });
+db.sequelize.sync({ force: false });
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
