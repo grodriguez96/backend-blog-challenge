@@ -12,10 +12,9 @@ export async function deletePost(req, res) {
 
   const id = req.params.id;
   const result = await POST.destroy({ where: { id: id } });
-  if (result > 0) {
-    res.send({ result: result });
-  } else {
-    const err = boom.notImplemented(message.ID_NOT_FOUND);
+  if (result) res.send({message: message.DELETED});
+  else {
+    const err = boom.notImplemented({message: message.ID_NOT_FOUND});
     throw err;
   }
 }

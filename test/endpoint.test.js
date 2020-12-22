@@ -37,8 +37,12 @@ describe("Response the GET method", () => {
 describe("Response the GET/:id method", () => {
   it("It should send status 200", async () => {
     const response = await request(app).get("/posts/" + intParam);
-    expect(response.body).toEqual({ message: "The id cannot be found" });
-    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({
+      error: "Not Found",
+      message: "The id cannot be found",
+      statusCode: 404,
+    });
+    expect(response.statusCode).toBe(404);
   });
   it("It should send status 400 - Invalid param", async () => {
     const response = await request(app).get("/posts/" + charParam);

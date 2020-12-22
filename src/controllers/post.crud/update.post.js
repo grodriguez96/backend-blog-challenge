@@ -12,7 +12,7 @@ export async function updatePost(req, res) {
 
   const id = req.params.id;
   const result = await POST.update(req.body, { where: { id: id } });
-  if (result) res.send(result);
+  if (result) res.send({ message: message.UPDATED });
   else {
     const err = boom.notImplemented(message.ID_NOT_FOUND);
     throw err;
